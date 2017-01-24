@@ -1,7 +1,15 @@
 import React from 'react'
+import { ToDosContainer } from 'containers'
 
-const MainContainer = React.createClass({
-  render () {
+class MainContainer extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      items: []
+    }
+  }
+
+  render() {
     return (
       <div className="container">
         <div className="row">  
@@ -9,14 +17,14 @@ const MainContainer = React.createClass({
             <div className="text-center">
               <h1>To Do List</h1>
               <h3>Form</h3>
-              <h3>To Do List</h3>
+              <ToDosContainer />
               <h4>Filters</h4>
             </div>
           </div>
         </div>
       </div>
     )
-  },
-})
+  }
+}
 
 export default MainContainer
