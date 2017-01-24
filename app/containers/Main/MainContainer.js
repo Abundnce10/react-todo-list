@@ -5,7 +5,16 @@ class MainContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      items: []
+      items: [
+        {
+          finished: false,
+          description: "Finish this app"
+        },
+        {
+          finished: true,
+          description: "Start this app"
+        }
+      ]
     }
   }
 
@@ -17,7 +26,7 @@ class MainContainer extends React.Component {
             <div className="text-center">
               <h1>To Do List</h1>
               <h3>Form</h3>
-              <ToDosContainer />
+              <ToDosContainer items={this.state.items} />
               <h4>Filters</h4>
             </div>
           </div>
