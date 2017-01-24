@@ -45,7 +45,7 @@ class MainContainer extends React.Component {
               <h1 className="text-center">todos</h1>
 
               <form onSubmit={this.handleFormSubmit} className="text-center">
-                <FormControl type="text" value={this.state.temporaryInput} onChange={this.handleFormOnChange} />
+                <FormControl type="text" value={this.state.temporaryInput} onChange={this.handleFormOnChange} placeholder={'What needs to be done?'} />
               </form>
 
               <ToDosContainer items={this.state.items} />
