@@ -50,10 +50,10 @@ class MainContainer extends React.Component {
               </form>
 
               <ToDosContainer items={this.state.items} />
-              <h4>Filters</h4>
+
               <div>
                 <span style={{marginRight: "4em"}}><i>{this.state.items.filter(x => !x.finished).length} {pluralize('item',this.state.items.filter(x => !x.finished).length)} left</i></span>
-                <span style={{padding: ".2em 1em"}}>All</span>
+                <span style={{padding: ".2em 1em", border: "1px solid black"}}>All</span>
                 <span style={{padding: ".2em 1em"}}>Active</span>
                 <span style={{padding: ".2em 1em"}}>Completed</span>
                 <span style={{marginLeft: "4em"}}>Clear Completed</span>
