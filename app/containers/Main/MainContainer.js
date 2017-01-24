@@ -1,5 +1,5 @@
 import React from 'react'
-import { FormControl } from 'react-bootstrap'
+import { FormControl, Grid, Row, Col } from 'react-bootstrap'
 import { ToDosContainer } from 'containers'
 import { pluralize } from 'helpers/utils'
 
@@ -51,13 +51,21 @@ class MainContainer extends React.Component {
 
               <ToDosContainer items={this.state.items} />
 
-              <div>
-                <span style={{marginRight: "4em"}}><i>{this.state.items.filter(x => !x.finished).length} {pluralize('item',this.state.items.filter(x => !x.finished).length)} left</i></span>
-                <span style={{padding: ".2em 1em", border: "1px solid black"}}>All</span>
-                <span style={{padding: ".2em 1em"}}>Active</span>
-                <span style={{padding: ".2em 1em"}}>Completed</span>
-                <span style={{marginLeft: "4em"}}>Clear Completed</span>
-              </div>
+              <Grid fluid={true}>
+                <Row className="show-grid">
+                  <Col xs={3} className="text-left">
+                    <i>{this.state.items.filter(x => !x.finished).length} {pluralize('item',this.state.items.filter(x => !x.finished).length)} left</i>
+                  </Col>
+                  <Col xs={6} className="text-center">
+                    <span style={{padding: ".2em 1em", border: "1px solid black"}}>All</span>
+                    <span style={{padding: ".2em 1em"}}>Active</span>
+                    <span style={{padding: ".2em 1em"}}>Complete</span>
+                  </Col>
+                  <Col xs={3} className="text-right">
+                    <span>Clear Completed</span>
+                  </Col>
+                </Row>
+              </Grid>
             </div>
           </div>
         </div>
