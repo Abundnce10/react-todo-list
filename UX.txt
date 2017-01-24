@@ -1,0 +1,6 @@
+1. User lands on page
+2. A form is presented
+3. User types something and then hits enter
+4. It appears in a list below
+5. It can be checked off or deleted
+6. You can filter the list by All, Done, Incomplete
