@@ -1,20 +1,20 @@
 import React, { PropTypes } from 'react'
-import { completed } from './styles.css'
+import { todoContainer, checkbox, todoLabel, completed } from './styles.css'
 
 export default function ToDo (props) {
   const isFinished = props.finished;
   if (isFinished) {
     return (
-      <li>
-        <input type="checkbox" checked="checked"></input>
+      <li className={todoContainer}>
+        <input type="checkbox" checked="checked" className={checkbox}></input>
         <label className={completed}>{props.description}</label>
       </li>
     )
   } else {
     return (
-      <li>
-        <input type="checkbox"></input>
-        <label>{props.description}</label>
+      <li className={todoContainer}>
+        <input type="checkbox" className={checkbox}></input>
+        <label className={todoLabel}>{props.description}</label>
       </li>
     )
   }
