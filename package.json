@@ -1,5 +1,5 @@
 {
-  "name": "react-todo=list",
+  "name": "react-todo-list",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "react": "^15.0.1",
+    "react-bootstrap": "^0.30.7",
     "react-dom": "^15.0.1",
     "react-router": "^2.0.1"
   },
