@@ -11,11 +11,13 @@ class MainContainer extends React.Component {
       items: [
         {
           finished: false,
-          description: "Finish this app"
+          description: "Finish this app",
+          createdAt: Date.now()
         },
         {
           finished: true,
-          description: "Start this app"
+          description: "Start this app",
+          createdAt: (Date.now() + 1)
         }
       ]
     }
@@ -31,7 +33,7 @@ class MainContainer extends React.Component {
   handleFormSubmit(event) {
     let items = this.state.items
     // add temporary to items array
-    items.unshift({finished: false, description: this.state.temporaryInput})
+    items.unshift({finished: false, description: this.state.temporaryInput, createdAt: Date.now()})
     // setState (reset tempoorary to empty string )
     this.setState({items: items, temporaryInput: ""})
     event.preventDefault();

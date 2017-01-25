@@ -2,8 +2,7 @@ import React, { PropTypes } from 'react'
 import { todoContainer, checkbox, todoLabel, completed } from './styles.css'
 
 export default function ToDo (props) {
-  const isFinished = props.finished;
-  if (isFinished) {
+  if (props.finished) {
     return (
       <li className={todoContainer}>
         <input type="checkbox" checked="checked" className={checkbox}></input>
