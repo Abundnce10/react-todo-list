@@ -29,8 +29,22 @@ class MainContainer extends React.Component {
   }
 
   handleToDoClick(createdAt) {
-    console.log('ToDo Was Clickded');
-    console.log(createdAt);
+    // let items = this.state.items;
+    // items.forEach(function(item, index, items) {
+    //   if (item.createdAt === createdAt) {
+    //     items[index] = item
+    //     items[index].finished = !item.finished // switch
+    //   }
+    // });
+
+    // this.setState({items: items})
+
+    const items = this.state.items.map((item) => {
+      if (item.createdAt === createdAt) return {...item, finished: !item.finished};
+      return item;
+    });
+
+    this.setState({items});
   }
 
   handleFormOnChange(event) {
