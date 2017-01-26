@@ -20,8 +20,8 @@ class MainContainer extends React.Component {
           show: true
         },
         {
-          finished: false,
-          description: "Eat some lunch",
+          finished: true,
+          description: "Start this app",
           createdAt: Date.now() + 1,
           show: true
         }
