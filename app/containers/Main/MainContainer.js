@@ -9,6 +9,9 @@ class MainContainer extends React.Component {
     super(props)
     this.state = {
       temporaryInput: "",
+      allFilterSelected: true,
+      activeFilterSelected: false,
+      completeFilterSelected: false,
       items: [
         {
           finished: false,
@@ -38,7 +41,7 @@ class MainContainer extends React.Component {
     const items = this.state.items.map((item) => {
       return {...item, show: true};
     });
-    this.setState({items});
+    this.setState({items, allFilterSelected: true, activeFilterSelected: false, completeFilterSelected: false});
   }
 
   handleToDoFilterActive() {
@@ -50,7 +53,7 @@ class MainContainer extends React.Component {
         return {...item, show: false};
       } 
     });
-    this.setState({items});
+    this.setState({items, activeFilterSelected: true, allFilterSelected: false, completeFilterSelected: false});
   }
 
   handleToDoFilterComplete() {
@@ -62,7 +65,7 @@ class MainContainer extends React.Component {
         return {...item, show: true};
       } 
     });
-    this.setState({items});
+    this.setState({items, completeFilterSelected: true, allFilterSelected: false, activeFilterSelected: false});
   }
 
   handleToDoClick(createdAt) {
@@ -118,9 +121,9 @@ class MainContainer extends React.Component {
                     <i>{this.state.items.filter(x => !x.finished).length} {pluralize('item',this.state.items.filter(x => !x.finished).length)} left</i>
                   </Col>
                   <Col xs={6} className="text-center">
-                    <span className={buttonBorder} onClick={this.handleToDoFilterAll.bind(this)}>All</span>
-                    <span className={footerButton} onClick={this.handleToDoFilterActive.bind(this)}>Active</span>
-                    <span className={footerButton} onClick={this.handleToDoFilterComplete.bind(this)}>Complete</span>
+                    <span className={this.state.allFilterSelected? buttonBorder : footerButton} onClick={this.handleToDoFilterAll.bind(this)}>All</span>
+                    <span className={this.state.activeFilterSelected? buttonBorder : footerButton} onClick={this.handleToDoFilterActive.bind(this)}>Active</span>
+                    <span className={this.state.completeFilterSelected? buttonBorder : footerButton} onClick={this.handleToDoFilterComplete.bind(this)}>Complete</span>
                   </Col>
                   <Col xs={3} className="text-right" style={{paddingRight: "0px"}}>
                     <span className={footerButton}><small>Clear Completed</small></span>
