@@ -34,6 +34,15 @@ class MainContainer extends React.Component {
     this.handleToDoFilterAll = this.handleToDoFilterAll.bind(this);
     this.handleToDoFilterActive = this.handleToDoFilterActive.bind(this);
     this.handleToDoFilterComplete = this.handleToDoFilterComplete.bind(this);
+    this.handleClearCompleted = this.handleClearCompleted.bind(this);
+  }
+
+  handleClearCompleted() {
+    console.log('Handle Clear Completed Click');
+    const items = this.state.items.filter((item) => {
+      if (!item.finished) return {...item};
+    });
+    this.setState({items})
   }
 
   handleToDoFilterAll() {
@@ -126,7 +135,7 @@ class MainContainer extends React.Component {
                     <span className={this.state.completeFilterSelected? buttonBorder : footerButton} onClick={this.handleToDoFilterComplete.bind(this)}>Complete</span>
                   </Col>
                   <Col xs={3} className="text-right" style={{paddingRight: "0px"}}>
-                    <span className={footerButton}><small>Clear Completed</small></span>
+                    <span className={footerButton} onClick={this.handleClearCompleted.bind(this)}><small>Clear Completed</small></span>
                   </Col>
                 </Row>
               </Grid>
