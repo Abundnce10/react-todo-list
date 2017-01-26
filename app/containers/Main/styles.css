@@ -6,7 +6,7 @@
 }
 
 .footerButton, .buttonBorder {
-  padding: .2em 1em;
+  padding: .2em .5em;
 }
 
 .footerButton:hover {
