@@ -4,3 +4,15 @@
   border-top-style: solid;
   border-top-width: 1px;
 }
+
+.footerButton, .buttonBorder {
+  padding: .2em 1em;
+}
+
+.footerButton:hover {
+  cursor: pointer;
+}
+
+.buttonBorder {
+  border: 1px solid black;
+}

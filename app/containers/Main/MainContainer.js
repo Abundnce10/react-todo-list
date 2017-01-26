@@ -1,7 +1,7 @@
 import React from 'react'
 import { FormControl, Grid, Row, Col } from 'react-bootstrap'
 import { ToDo } from 'components'
-import { todoContainer } from './styles.css'
+import { todoContainer, footerButton, buttonBorder } from './styles.css'
 import { pluralize } from 'helpers/utils'
 
 class MainContainer extends React.Component {
@@ -13,32 +13,59 @@ class MainContainer extends React.Component {
         {
           finished: false,
           description: "Finish this app",
-          createdAt: Date.now()
+          createdAt: Date.now(),
+          show: true
         },
-        // {
-        //   finished: true,
-        //   description: "Start this app",
-        //   createdAt: (Date.now() + 1)
-        // }
+        {
+          finished: false,
+          description: "Eat some lunch",
+          createdAt: Date.now() + 1,
+          show: true
+        }
       ]
     }
 
     this.handleFormOnChange = this.handleFormOnChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleToDoClick = this.handleToDoClick.bind(this);
+    this.handleToDoFilterAll = this.handleToDoFilterAll.bind(this);
+    this.handleToDoFilterActive = this.handleToDoFilterActive.bind(this);
+    this.handleToDoFilterComplete = this.handleToDoFilterComplete.bind(this);
+  }
+
+  handleToDoFilterAll() {
+    console.log('Handle ToDo Filter ALL Clicked');
+    const items = this.state.items.map((item) => {
+      return {...item, show: true};
+    });
+    this.setState({items});
+  }
+
+  handleToDoFilterActive() {
+    console.log('Handle ToDo Filter ACTIVE Clicked');
+    const items = this.state.items.map((item) => {
+      if (!item.finished) {
+        return {...item, show: true};
+      } else {
+        return {...item, show: false};
+      } 
+    });
+    this.setState({items});
+  }
+
+  handleToDoFilterComplete() {
+    console.log('Handle ToDo Filter COMPLETE Clicked');
+    const items = this.state.items.map((item) => {
+      if (!item.finished) {
+        return {...item, show: false};
+      } else {
+        return {...item, show: true};
+      } 
+    });
+    this.setState({items});
   }
 
   handleToDoClick(createdAt) {
-    // let items = this.state.items;
-    // items.forEach(function(item, index, items) {
-    //   if (item.createdAt === createdAt) {
-    //     items[index] = item
-    //     items[index].finished = !item.finished // switch
-    //   }
-    // });
-
-    // this.setState({items: items})
-
     const items = this.state.items.map((item) => {
       if (item.createdAt === createdAt) return {...item, finished: !item.finished};
       return item;
@@ -54,7 +81,7 @@ class MainContainer extends React.Component {
   handleFormSubmit(event) {
     let items = this.state.items
     // add temporary to items array
-    items.unshift({finished: false, description: this.state.temporaryInput, createdAt: Date.now()})
+    items.unshift({finished: false, description: this.state.temporaryInput, createdAt: Date.now(), show: true})
     // setState (reset tempoorary to empty string )
     this.setState({items: items, temporaryInput: ""})
     event.preventDefault();
@@ -75,26 +102,28 @@ class MainContainer extends React.Component {
               <div className={todoContainer}>
                 <ul style={{listStyleType: "none", paddingLeft: "0px"}}>
                   {this.state.items.map((item, i) => {
-                    return <ToDo 
-                              key={item.createdAt} 
+                    if (item.show) {
+                      return <ToDo 
                               {...item}
-                              clickHandler={this.handleToDoClick} />
+                              key={item.createdAt}
+                              clickHandler={this.handleToDoClick} /> 
+                    }
                   })}
                 </ul>
               </div>
 
               <Grid fluid={true}>
                 <Row className="show-grid">
-                  <Col xs={3} className="text-left">
+                  <Col xs={3} className="text-left" style={{paddingLeft: "0px"}}>
                     <i>{this.state.items.filter(x => !x.finished).length} {pluralize('item',this.state.items.filter(x => !x.finished).length)} left</i>
                   </Col>
                   <Col xs={6} className="text-center">
-                    <span style={{padding: ".2em 1em", border: "1px solid black"}}>All</span>
-                    <span style={{padding: ".2em 1em"}}>Active</span>
-                    <span style={{padding: ".2em 1em"}}>Complete</span>
+                    <span className={buttonBorder} onClick={this.handleToDoFilterAll.bind(this)}>All</span>
+                    <span className={footerButton} onClick={this.handleToDoFilterActive.bind(this)}>Active</span>
+                    <span className={footerButton} onClick={this.handleToDoFilterComplete.bind(this)}>Complete</span>
                   </Col>
-                  <Col xs={3} className="text-right">
-                    <span>Clear Completed</span>
+                  <Col xs={3} className="text-right" style={{paddingRight: "0px"}}>
+                    <span className={footerButton}><small>Clear Completed</small></span>
                   </Col>
                 </Row>
               </Grid>
