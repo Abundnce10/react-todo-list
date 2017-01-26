@@ -1,3 +1,6 @@
-.color {
-  color: green;
+.todoContainer{
+  margin-top: 10px;
+  border-top-color: rgb(230,230,230);
+  border-top-style: solid;
+  border-top-width: 1px;
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import { FormControl, Grid, Row, Col } from 'react-bootstrap'
-import { ToDosContainer } from 'containers'
+import { ToDo } from 'components'
+import { todoContainer } from './styles.css'
 import { pluralize } from 'helpers/utils'
 
 class MainContainer extends React.Component {
@@ -14,16 +15,22 @@ class MainContainer extends React.Component {
           description: "Finish this app",
           createdAt: Date.now()
         },
-        {
-          finished: true,
-          description: "Start this app",
-          createdAt: (Date.now() + 1)
-        }
+        // {
+        //   finished: true,
+        //   description: "Start this app",
+        //   createdAt: (Date.now() + 1)
+        // }
       ]
     }
 
     this.handleFormOnChange = this.handleFormOnChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.handleToDoClick = this.handleToDoClick.bind(this);
+  }
+
+  handleToDoClick(createdAt) {
+    console.log('ToDo Was Clickded');
+    console.log(createdAt);
   }
 
   handleFormOnChange(event) {
@@ -51,7 +58,16 @@ class MainContainer extends React.Component {
                 <FormControl type="text" style={{fontSize: "1.6em", padding: "20px"}} value={this.state.temporaryInput} onChange={this.handleFormOnChange} placeholder={'What needs to be done?'} />
               </form>
 
-              <ToDosContainer items={this.state.items} />
+              <div className={todoContainer}>
+                <ul style={{listStyleType: "none", paddingLeft: "0px"}}>
+                  {this.state.items.map((item, i) => {
+                    return <ToDo 
+                              key={item.createdAt} 
+                              {...item}
+                              clickHandler={this.handleToDoClick} />
+                  })}
+                </ul>
+              </div>
 
               <Grid fluid={true}>
                 <Row className="show-grid">
