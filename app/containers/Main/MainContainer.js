@@ -13,18 +13,18 @@ class MainContainer extends React.Component {
       activeFilterSelected: false,
       completeFilterSelected: false,
       items: [
-        {
-          finished: false,
-          description: "Finish this app",
-          createdAt: Date.now(),
-          show: true
-        },
-        {
-          finished: true,
-          description: "Start this app",
-          createdAt: Date.now() + 1,
-          show: true
-        }
+        // {
+        //   finished: false,
+        //   description: "Finish this app",
+        //   createdAt: Date.now(),
+        //   show: true
+        // },
+        // {
+        //   finished: true,
+        //   description: "Start this app",
+        //   createdAt: Date.now() + 1,
+        //   show: true
+        // }
       ]
     }
 
