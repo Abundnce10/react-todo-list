@@ -149,7 +149,7 @@ class MainContainer extends React.Component {
                     <span className={this.state.activeFilterSelected? buttonBorder : footerButton} onClick={this.handleToDoFilterActive.bind(this)}>Active</span>
                     <span className={this.state.completeFilterSelected? buttonBorder : footerButton} onClick={this.handleToDoFilterComplete.bind(this)}>Complete</span>
                   </Col>
-                  <Col xs={3} className="text-right" style={{padding: "0px"}}>
+                  <Col xs={3} className="text-center" style={{padding: "0px"}}>
                     <span className={footerButton} onClick={this.handleClearCompleted.bind(this)}><small>Clear Completed</small></span>
                   </Col>
                 </Row>
