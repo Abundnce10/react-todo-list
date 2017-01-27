@@ -2,30 +2,35 @@ import React from 'react'
 import { FormControl, Grid, Row, Col } from 'react-bootstrap'
 import { ToDo } from 'components'
 import { todoContainer, footerButton, buttonBorder } from './styles.css'
-import { pluralize } from 'helpers/utils'
+import { pluralize, saveState, loadState } from 'helpers/utils'
 
 class MainContainer extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      temporaryInput: "",
-      allFilterSelected: true,
-      activeFilterSelected: false,
-      completeFilterSelected: false,
-      items: [
-        // {
-        //   finished: false,
-        //   description: "Finish this app",
-        //   createdAt: Date.now(),
-        //   show: true
-        // },
-        // {
-        //   finished: true,
-        //   description: "Start this app",
-        //   createdAt: Date.now() + 1,
-        //   show: true
-        // }
-      ]
+    const localStorageState = loadState();
+    if (localStorageState) {
+      this.state = localStorageState;
+    } else {
+      this.state = {
+        temporaryInput: "",
+        allFilterSelected: true,
+        activeFilterSelected: false,
+        completeFilterSelected: false,
+        items: [
+          // {
+          //   finished: false,
+          //   description: "Finish this app",
+          //   createdAt: Date.now(),
+          //   show: true
+          // },
+          // {
+          //   finished: true,
+          //   description: "Start this app",
+          //   createdAt: Date.now() + 1,
+          //   show: true
+          // }
+        ]
+      }
     }
 
     this.handleFormOnChange = this.handleFormOnChange.bind(this);
@@ -35,6 +40,16 @@ class MainContainer extends React.Component {
     this.handleToDoFilterActive = this.handleToDoFilterActive.bind(this);
     this.handleToDoFilterComplete = this.handleToDoFilterComplete.bind(this);
     this.handleClearCompleted = this.handleClearCompleted.bind(this);
+  }
+
+  componentWillMount() {
+    console.log("componentWillMount()");
+  }
+
+  componentDidUpdate() {
+   console.log("componentDidUpdate()"); 
+   // save state into localStorage
+   saveState(this.state);
   }
 
   handleClearCompleted() {
