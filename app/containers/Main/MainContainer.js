@@ -105,7 +105,7 @@ class MainContainer extends React.Component {
         <div className="row">  
           <div className="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
             <div>
-              <h1 className="text-center">todos</h1>
+              <h1 className="text-center">To Do</h1>
 
               <form onSubmit={this.handleFormSubmit} className="text-center">
                 <FormControl type="text" style={{fontSize: "1.6em", padding: "20px"}} value={this.state.temporaryInput} onChange={this.handleFormOnChange} placeholder={'What needs to be done?'} />
@@ -116,9 +116,9 @@ class MainContainer extends React.Component {
                   {this.state.items.map((item, i) => {
                     if (item.show) {
                       return <ToDo 
-                              {...item}
-                              key={item.createdAt}
-                              clickHandler={this.handleToDoClick} /> 
+                                {...item}
+                                key={item.createdAt}
+                                clickHandler={this.handleToDoClick} /> 
                     }
                   })}
                 </ul>
@@ -134,7 +134,7 @@ class MainContainer extends React.Component {
                     <span className={this.state.activeFilterSelected? buttonBorder : footerButton} onClick={this.handleToDoFilterActive.bind(this)}>Active</span>
                     <span className={this.state.completeFilterSelected? buttonBorder : footerButton} onClick={this.handleToDoFilterComplete.bind(this)}>Complete</span>
                   </Col>
-                  <Col xs={3} className="text-right" style={{paddingRight: "0px"}}>
+                  <Col xs={3} className="text-right" style={{padding: "0px"}}>
                     <span className={footerButton} onClick={this.handleClearCompleted.bind(this)}><small>Clear Completed</small></span>
                   </Col>
                 </Row>
