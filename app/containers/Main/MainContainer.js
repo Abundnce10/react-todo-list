@@ -120,7 +120,7 @@ class MainContainer extends React.Component {
         <div className="row">  
           <div className="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
             <div>
-              <h1 className="text-center">To Do</h1>
+              <h1 className="text-center">To Do List</h1>
 
               <form onSubmit={this.handleFormSubmit} className="text-center">
                 <FormControl type="text" style={{fontSize: "1.6em", padding: "20px"}} value={this.state.temporaryInput} onChange={this.handleFormOnChange} placeholder={'What needs to be done?'} />
